@@ -11,8 +11,10 @@ namespace RCLAdmin.Core.Models
         public int PrinterAccessoryId { get; set; }
 
         [Required]
+        [Display(Name = "Nazwa")]
         public string Name { get; set; }
 
+        [Display(Name = "P/N")]
         public string PartNumber { get; set; }
 
         public List<PrinterAccessoryType> PrinterTypes { get; set; } 

@@ -21,6 +21,7 @@ namespace RCLAdmin.Core.Models
         public PrinterEventType EventType { get; set; }
 
         [Required]
+        [Display(Name = "Licznik")]
         public int Counter { get; set; }
 
         [Required]
@@ -29,6 +30,7 @@ namespace RCLAdmin.Core.Models
         [Required]
         public PrinterAccessory PrinterAccessory { get; set; }
 
+        [Display(Name = "Komentarz")]
         public string Comment { get; set; }
     }
 }
