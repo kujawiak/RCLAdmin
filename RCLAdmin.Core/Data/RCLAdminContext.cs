@@ -22,28 +22,17 @@ namespace RCLAdmin.Core.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Printer>()
-                //.HasRequired<PrinterType>(a => a.PrinterType)
-                //.WithMany(a => a.Printers)
-                //.WillCascadeOnDelete(false)
-                ;
+            modelBuilder.Entity<Printer>().ToTable("Printer");
 
-            modelBuilder.Entity<PrinterType>()
-                .HasMany<Printer>(a => a.Printers);
+            modelBuilder.Entity<PrinterType>().ToTable("PrinterType");
 
-            modelBuilder.Entity<Printer>()
-                .HasMany<PrinterEvent>(a => a.Events);
+            modelBuilder.Entity<PrinterEvent>().ToTable("PrinterEvent");
 
-            modelBuilder.Entity<PrinterType>()
-                .HasMany<PrinterAccessory>(a => a.Accessories)
-                //.WithMany(a => a.PrinterTypes)
-                //.Map(cs =>
-                //{
-                //    cs.ToTable("PrinterAccesoryLinks");
-                //    cs.MapLeftKey("TypeRefId");
-                //    cs.MapRightKey("AccesoryRefId");
-                //})
-                ;
+            modelBuilder.Entity<PrinterAccessory>().ToTable("PrinterAccessory");
+
+            modelBuilder.Entity<PrinterAccessoryType>().ToTable("PrinterAccessoryType")
+                .HasKey(a => new { a.PrinterAccessoryId, a.PrinterTypeId });
+
         }
     }
 }
