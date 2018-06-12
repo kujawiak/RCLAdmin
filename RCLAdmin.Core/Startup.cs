@@ -50,7 +50,7 @@ namespace RCLAdmin.Core
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Printers}/{action=Index}/{id?}");
             });
         }
     }

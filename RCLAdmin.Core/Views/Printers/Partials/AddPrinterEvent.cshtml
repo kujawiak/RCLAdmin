@@ -1,0 +1,67 @@
+﻿@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@model RCLAdmin.Core.Models.PrinterEvent
+
+<h2>Lista zdarzeń</h2>
+<div id="eventList">
+    @*@Html.Action("ListPrinterEvents", new { printerId = Model.Printer.PrinterId })*@
+</div>
+
+<div id="loadingPanel" style="display:none">
+    <p>Ładowanie listy zdarzeń...</p>
+</div>
+
+<hr />
+
+
+@*@using (Ajax.BeginForm("AddPrinterEvent", "Printers", new AjaxOptions() { LoadingElementId = "loadingPanel", UpdateTargetId = "eventList", HttpMethod = "Post" }))
+    {
+        <fieldset>
+            <legend>Dodaj zdarzenie</legend>
+
+            @Html.HiddenFor(model => model.Printer.PrinterId)
+            @{
+                Model.Date = DateTime.Now;
+                if (Model.EventType == 0)
+                {
+                    Model.EventType = RCLAdmin.Models.PrinterEventType.WymianaTonera;
+                }
+                if (String.IsNullOrEmpty(Model.Login))
+                {
+                    Model.Login = System.Web.HttpContext.Current.User.Identity.Name;
+                }
+            }
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.EventType)
+                @Html.EnumDropDownListFor(model => model.EventType, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EventType)
+                @Html.ActionLink("Dodaj nowy typ", "NIE_MA")
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PrinterAccessory)
+                @Html.DropDownListFor(model => model.PrinterAccessory.PrinterAccessoryId, (IEnumerable<SelectListItem>)ViewBag.PrinterAccessory, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PrinterAccessory)
+            </div>
+
+            @Html.HiddenFor(model => model.Login)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Counter)
+                @Html.EditorFor(model => model.Counter, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Counter)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Comment)
+                @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Comment)
+            </div>
+
+            <p>
+                <input type="submit" value="Dodaj zdarzenie" class="btn btn-info" />
+            </p>
+        </fieldset>
+    }
+*@
+

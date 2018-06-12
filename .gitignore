@@ -262,4 +262,9 @@ __pycache__/
 *.pyc
 
 # Old projects
-RCLAdmin.old/
+/RCLAdmin.old
+/PrinterAPI
+/AutoKse
+
+# Sensitive data
+/RCLAdmin.Core/appsettings.json

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<RCLAdmin.Core.Models.Printer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Rejestr drukarek</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(m => m.PrinterType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Localisation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Info)
+            </th>
+            <th width="15%">
+                @Html.DisplayNameFor(model => model.Person)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.PrinterType.ToString()
+            </td>
+            <td>
+                <a href="http://@item.IP" target="_blank" class="ipcheck">@item.IP</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Localisation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Info)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PrinterId" class="linkth glyphicon glyphicon-edit"></a> |
+                <a asp-action="Details" asp-route-id="@item.PrinterId" class="linkth glyphicon glyphicon-wrench"></a> |
+                <a asp-action="Delete" asp-route-id="@item.PrinterId" class="linkth glyphicon glyphicon-trash"></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<p>
+    <a asp-action="Create">Dodaj nową</a>
+</p>

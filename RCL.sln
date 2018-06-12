@@ -5,7 +5,11 @@ VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCLAdmin.old", "RCLAdmin.old\RCLAdmin.old.csproj", "{06E5804D-D948-4B1D-B232-9DA27D68EB2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCLAdmin.Core", "RCLAdmin.Core\RCLAdmin.Core.csproj", "{4A33E3D2-EAF6-4A55-A3B4-4E5479F26B77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCLAdmin.Core", "RCLAdmin.Core\RCLAdmin.Core.csproj", "{4A33E3D2-EAF6-4A55-A3B4-4E5479F26B77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrinterAPI", "PrinterAPI\PrinterAPI.csproj", "{D83CC285-3DFD-491E-A8DB-F2216B084F55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoKse", "AutoKse\AutoKse.csproj", "{CC1DFB53-A51F-4579-AACC-4584926309DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{4A33E3D2-EAF6-4A55-A3B4-4E5479F26B77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A33E3D2-EAF6-4A55-A3B4-4E5479F26B77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A33E3D2-EAF6-4A55-A3B4-4E5479F26B77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D83CC285-3DFD-491E-A8DB-F2216B084F55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D83CC285-3DFD-491E-A8DB-F2216B084F55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D83CC285-3DFD-491E-A8DB-F2216B084F55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D83CC285-3DFD-491E-A8DB-F2216B084F55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC1DFB53-A51F-4579-AACC-4584926309DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC1DFB53-A51F-4579-AACC-4584926309DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC1DFB53-A51F-4579-AACC-4584926309DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC1DFB53-A51F-4579-AACC-4584926309DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

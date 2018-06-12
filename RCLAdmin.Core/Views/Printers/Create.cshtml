@@ -1,0 +1,69 @@
+﻿@model RCLAdmin.Core.Models.Printer
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Dodaj nową drukarkę</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IP" class="control-label"></label>
+                <input asp-for="IP" class="form-control" />
+                <span asp-validation-for="IP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrinterType" class="control-label"></label>
+                <select asp-for="PrinterType.PrinterTypeId" asp-items="@((IEnumerable<SelectListItem>)ViewData["PrinterTypes"])" class="form-control"></select>
+                <span asp-validation-for="PrinterType" class="text-danger"></span>
+                @*@Html.ActionLink("Dodaj nowy model", "AddPrinterType", new { redirect = Request.Url })*@
+            </div>
+            <div class="form-group">
+                <label asp-for="SerialNumber" class="control-label"></label>
+                <input asp-for="SerialNumber" class="form-control" />
+                <span asp-validation-for="SerialNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Localisation" class="control-label"></label>
+                <input asp-for="Localisation" class="form-control" />
+                <span asp-validation-for="Localisation" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="Photo" class="control-label"></label>
+                <input asp-for="Photo" class="form-control" />
+                <span asp-validation-for="Photo" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="Info" class="control-label"></label>
+                <input asp-for="Info" class="form-control" />
+                <span asp-validation-for="Info" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Person" class="control-label"></label>
+                <input asp-for="Person" class="form-control" />
+                <span asp-validation-for="Person" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
+                    </label>
+                </div>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Dodaj" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Powrót do rejestru</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

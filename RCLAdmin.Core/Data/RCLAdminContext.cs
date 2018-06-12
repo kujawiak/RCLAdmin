@@ -23,16 +23,11 @@ namespace RCLAdmin.Core.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Printer>().ToTable("Printer");
-
             modelBuilder.Entity<PrinterType>().ToTable("PrinterType");
-
             modelBuilder.Entity<PrinterEvent>().ToTable("PrinterEvent");
-
             modelBuilder.Entity<PrinterAccessory>().ToTable("PrinterAccessory");
-
             modelBuilder.Entity<PrinterAccessoryType>().ToTable("PrinterAccessoryType")
                 .HasKey(a => new { a.PrinterAccessoryId, a.PrinterTypeId });
-
         }
     }
 }

@@ -26,15 +26,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">RCLAdmin.Core</a>
+                <div style="display: inline; margin-top: -15px;" class="navbar-brand"><img src="~/images/rarog_50.png" /></div>
+                <a asp-area="" asp-controller="Printers" asp-action="Index" class="navbar-brand">Raróg 2.0</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="Printers" asp-action="Index">Drukarki</a></li>
+                    <li><a asp-area="" asp-controller="Events" asp-action="Index">Dziennik</a></li>
+                    <li><a asp-area="" asp-controller="Storage" asp-action="Index">Magazyn</a></li>
                 </ul>
-                <p class="nav navbar-text navbar-right">Hello, @User.Identity.Name!</p>
+                <p class="nav navbar-text navbar-right">Zalogowany jako: @User.Identity.Name!</p>
             </div>
         </div>
     </nav>

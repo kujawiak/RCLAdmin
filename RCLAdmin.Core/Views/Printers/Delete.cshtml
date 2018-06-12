@@ -1,0 +1,52 @@
+﻿@model RCLAdmin.Core.Models.Printer
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<p></p>
+<div class="alert alert-danger">Usuwasz rekord z bazy danych. Jesteś pewien?</div>
+
+<div>
+    <h4>@Model.PrinterType.ToString()</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IP)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IP)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Localisation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Localisation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SerialNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Info)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Info)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Person)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Person)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="PrinterId" />
+        <input type="submit" value="Usuń" class="btn btn-danger" /> |
+        <a asp-action="Index">Powrót do rejestru</a>
+    </form>
+</div>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<RCLAdmin.Models.PrinterEvent>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(a => a.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EventType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrinterAccessory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Counter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Login)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Date.ToShortDateString()
+                </td>
+                <td>
+                    @item.EventType
+                </td>
+                <td>
+                    @item.PrinterAccessory
+                </td>
+                <td>
+                    @item.Counter
+                </td>
+                <td width="15%">
+                    @item.Comment
+                </td>
+                <td>
+                    @item.Login
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
