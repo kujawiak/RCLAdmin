@@ -12,6 +12,19 @@
 
 <hr />
 
+<form asp-controller="Events"
+      asp-action="Create"
+      data-ajax-begin="onBegin" 
+      data-ajax-complete="onComplete"
+      data-ajax-failure="onFailed" 
+      data-ajax-success="onSuccess"
+      data-ajax-update="eventList"
+      data-ajax="true"
+      data-ajax-method="POST">
+    <legend>Dodaj zdarzenie</legend>
+
+    <input type="submit" value="Dodaj zdarzenie" class="btn btn-info" />
+</form>
 
 @*@using (Ajax.BeginForm("AddPrinterEvent", "Printers", new AjaxOptions() { LoadingElementId = "loadingPanel", UpdateTargetId = "eventList", HttpMethod = "Post" }))
     {

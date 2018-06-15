@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -23,9 +24,14 @@ namespace RCLAdmin.Core
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var csBuilder = new SqlConnectionStringBuilder();
+            csBuilder.ConnectionString = Configuration.GetConnectionString("Dev");
+            csBuilder.Password = Configuration["DbPassword"];
+
+
             services.AddDbContext<RCLAdminContext>(
                 options => 
-                    options.UseSqlServer(Configuration.GetConnectionString("Dev"))
+                    options.UseSqlServer(csBuilder.ConnectionString)
                 );
 
             services.AddMvc();
