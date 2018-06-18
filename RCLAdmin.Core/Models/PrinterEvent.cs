@@ -18,6 +18,7 @@ namespace RCLAdmin.Core.Models
         public DateTime Date { get; set; }
 
         [Required]
+        [Display(Name = "Zdarzenie")]
         public PrinterEventType EventType { get; set; }
 
         [Required]
@@ -25,9 +26,11 @@ namespace RCLAdmin.Core.Models
         public int Counter { get; set; }
 
         [Required]
+        [Display(Name = "Kto")]
         public string Login { get; set; }
 
         [Required]
+        [Display(Name = "Nazwa")]
         public PrinterAccessory PrinterAccessory { get; set; }
 
         [Display(Name = "Komentarz")]

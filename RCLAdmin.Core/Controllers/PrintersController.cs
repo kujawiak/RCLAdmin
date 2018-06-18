@@ -43,7 +43,7 @@ namespace RCLAdmin.Core.Controllers
             {
                 return NotFound();
             }
-
+            populatePrinterAccessoryDropDown(printer.PrinterType);
             return View(printer);
         }
 
@@ -175,6 +175,22 @@ namespace RCLAdmin.Core.Controllers
                 });
             }
             ViewData["PrinterTypes"] = list;
+        }
+
+        private void populatePrinterAccessoryDropDown(PrinterType printerType)
+        {
+            var list = new List<SelectListItem>();
+            var accessories = _context.PrinterAccessories
+                .Where(a => a.PrinterTypes.Any(b => b.PrinterTypeId == printerType.PrinterTypeId));
+            foreach (var item in accessories)
+            {
+                list.Add(new SelectListItem()
+                {
+                    Text = string.Format("{0} {1} (ID:{2})", item.Name, item.PartNumber, item.PrinterAccessoryId),
+                    Value = item.PrinterAccessoryId.ToString()
+                });
+            }
+            ViewData["PrinterAccessories"] = list;
         }
     }
 }

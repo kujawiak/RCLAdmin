@@ -8,5 +8,6 @@ namespace RCLAdmin.Core.Models
     public enum PrinterEventType
     {
         WymianaTonera = 1,
+        ZgloszenieAwarii = 100,
     }
 }

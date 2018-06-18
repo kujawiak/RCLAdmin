@@ -1,4 +1,6 @@
-﻿@model IEnumerable<RCLAdmin.Core.Models.PrinterEvent>
+﻿@using RCLAdmin.Core.Models
+@using RCLAdmin.Core.ViewComponents
+@model IEnumerable<PrinterEvent>
 
 <table class="table table-hover">
     <thead>
@@ -25,27 +27,27 @@
     </thead>
     <tbody>
         @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @item.Date.ToShortDateString()
-                </td>
-                <td>
-                    @item.EventType
-                </td>
-                <td>
-                    @item.PrinterAccessory
-                </td>
-                <td>
-                    @item.Counter
-                </td>
-                <td width="15%">
-                    @item.Comment
-                </td>
-                <td>
-                    @item.Login
-                </td>
-            </tr>
-        }
+{
+        <tr>
+            <td>
+                @item.Date.ToShortDateString()
+            </td>
+            <td>
+                @item.EventType
+            </td>
+            <td>
+                @item.PrinterAccessory
+            </td>
+            <td>
+                @item.Counter
+            </td>
+            <td width="15%">
+                @item.Comment
+            </td>
+            <td>
+                @item.Login
+            </td>
+        </tr>
+}
     </tbody>
 </table>

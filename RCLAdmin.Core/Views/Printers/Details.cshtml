@@ -52,4 +52,12 @@
     <a asp-action="Index">Powrót do rejestru</a>
 </div>
 
+
+
+<h2>Lista zdarzeń</h2>
+
+<div id="eventList">
+    @await Component.InvokeAsync("PrinterEvents", new { printerId = Model.PrinterId })
+</div>
+
 @await Html.PartialAsync("Partials/AddPrinterEvent", new RCLAdmin.Core.Models.PrinterEvent() { Printer = Model })

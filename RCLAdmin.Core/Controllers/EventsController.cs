@@ -4,26 +4,50 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using RCLAdmin.Core.Data;
 using RCLAdmin.Core.Models;
 
 namespace RCLAdmin.Core.Controllers
 {
     public class EventsController : Controller
     {
-        public ActionResult Index() //int printerId
+        private readonly RCLAdminContext _context;
+
+        public EventsController(RCLAdminContext context)
         {
-            //var events = eventsRepository.GetEventsForPrinterId(printerId);
-            //return PartialView("Partials/ListPrinterEvents", events);
-            return Content("TEST");
+            _context = context;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var events = _context.PrinterEvents
+                .OrderByDescending(a => a.Date)
+                .ToListAsync();
+            return View(await events);
         }
 
         [HttpPost]
-        public ActionResult Create(PrinterEvent printerEvent) //async Task<IActionResult>
+        public async Task<IActionResult> Create(PrinterEvent printerEvent)
         {
-            //ViewBag.PrinterEventTypeList = dropDownListHelper.PopulatePrinterEventTypeDropDownList();
-            //eventsRepository.InsertEvent(printerEvent);
-            //printersRepository.UpdatePrinterAccessoryAvailability(printerEvent.PrinterAccessory, -1);
-            return RedirectToAction("Index", "Events"); //new { printerId = printerEvent.Printer.PrinterId }
+            if (printerEvent.PrinterAccessory == null)
+            {
+                return null;
+            }
+            printerEvent.Date = DateTime.Now;
+            Printer printer = _context.Printers.Find(printerEvent.Printer.PrinterId);
+            PrinterAccessory accessory = _context.PrinterAccessories.Find(printerEvent.PrinterAccessory.PrinterAccessoryId);
+            printerEvent.Printer = printer;
+            printerEvent.PrinterAccessory = accessory;
+            _context.PrinterEvents.Add(printerEvent);
+
+            var accessoryToModify = _context.Entry(accessory);
+            accessoryToModify.Entity.Availability = accessoryToModify.Entity.Availability - 1;
+            accessoryToModify.State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
+
+            return ViewComponent("PrinterEvents", new { printerId = printerEvent.Printer.PrinterId });
         }
     }
 }
