@@ -14,10 +14,13 @@ namespace RCLAdmin.Core
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             Configuration = configuration;
+            CurrentEnvironment = env;
         }
+
+        private IHostingEnvironment CurrentEnvironment{ get; set; } 
 
         public IConfiguration Configuration { get; }
 
@@ -26,13 +29,21 @@ namespace RCLAdmin.Core
         {
             var csBuilder = new SqlConnectionStringBuilder();
             csBuilder.ConnectionString = Configuration.GetConnectionString("Dev");
-            csBuilder.Password = Configuration["DbPassword"];
-
+            if (CurrentEnvironment.IsDevelopment())
+            {
+                csBuilder.Password = Configuration["DbPassword"];
+            }
 
             services.AddDbContext<RCLAdminContext>(
                 options => 
                     options.UseSqlServer(csBuilder.ConnectionString)
                 );
+
+            services.Configure<IISOptions>(o =>
+            {
+                o.AutomaticAuthentication = true;
+                o.ForwardClientCertificate = true;
+            });
 
             services.AddMvc();
         }

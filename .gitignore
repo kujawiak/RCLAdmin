@@ -264,3 +264,4 @@ __pycache__/
 # Old projects
 /RCLAdmin.old
 /PrinterAPI
+/RCLAdmin.Core/Properties/PublishProfiles/CustomProfile.pubxml
