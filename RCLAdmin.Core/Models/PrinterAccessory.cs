@@ -17,7 +17,7 @@ namespace RCLAdmin.Core.Models
         [Display(Name = "P/N")]
         public string PartNumber { get; set; }
 
-        public List<PrinterAccessoryType> PrinterTypes { get; set; } 
+        public List<PrinterAccessoryType> PrinterAccessoryType { get; set; }
 
         [Display(Name = "Dostępność")]
         public int Availability { get; set; }

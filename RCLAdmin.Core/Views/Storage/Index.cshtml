@@ -1,0 +1,50 @@
+﻿@model IEnumerable<RCLAdmin.Core.Models.PrinterAccessory>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Stan magazynowy tonerów</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Availability)
+            </th>
+            <th>
+                Sparowane drukarki
+            </th>
+            @*<th></th>*@
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+     var classType = String.Empty;
+        if (item.Availability < 2) { classType = "bg-warning"; }
+        if (item.Availability < 1) { classType = "bg-danger"; }
+    
+        <tr class="@classType">
+            <td>
+                @item.ToString()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Availability)
+            </td>
+            <td>
+                @foreach (var p in item.PrinterAccessoryType)
+                {
+                    @p.PrinterType.ToString();
+                    <br />
+                }
+            </td>
+            <td>
+                <a asp-action="AssignPrinter" asp-route-id="@item.PrinterAccessoryId" class="linkth glyphicon glyphicon-print"></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

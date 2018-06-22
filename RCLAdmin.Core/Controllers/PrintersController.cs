@@ -181,7 +181,7 @@ namespace RCLAdmin.Core.Controllers
         {
             var list = new List<SelectListItem>();
             var accessories = _context.PrinterAccessories
-                .Where(a => a.PrinterTypes.Any(b => b.PrinterTypeId == printerType.PrinterTypeId));
+                .Where(a => a.PrinterAccessoryType.Any(b => b.PrinterTypeId == printerType.PrinterTypeId));
             foreach (var item in accessories)
             {
                 list.Add(new SelectListItem()

@@ -19,7 +19,7 @@ namespace RCLAdmin.Core.Models
 
         public List<Printer> Printers { get; set; }
 
-        public List<PrinterAccessoryType> Accessories { get; set; }
+        public List<PrinterAccessoryType> PrinterAccessoryType { get; set; }
 
         public override string ToString()
         {
