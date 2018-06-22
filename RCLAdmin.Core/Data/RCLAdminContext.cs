@@ -30,7 +30,7 @@ namespace RCLAdmin.Core.Data
             modelBuilder.Entity<PrinterEvent>()
                 .ToTable("PrinterEvent");
             modelBuilder.Entity<PrinterAccessory>()
-                .ToTable("PrinterAccessory")
+                .ToTable("PrinterAccessory");
             modelBuilder.Entity<PrinterAccessoryType>()
                 .ToTable("PrinterAccessoryType")
                 .HasKey(a => new { a.PrinterAccessoryId, a.PrinterTypeId });
