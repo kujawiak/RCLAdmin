@@ -10,13 +10,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(m => m.PrinterType)
+                <a asp-action="Index" asp-route-sortOrder="@(((string)ViewData["CurrentSortOrder"] == "model") ? "model_rev" : "model")">@Html.DisplayNameFor(m => m.PrinterType)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IP)
+                <a asp-action="Index" asp-route-sortOrder="@(((string)ViewData["CurrentSortOrder"] == "ip") ? "ip_rev" : "ip")">@Html.DisplayNameFor(model => model.IP)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Localisation)
+                <a asp-action="Index" asp-route-sortOrder="@(((string)ViewData["CurrentSortOrder"] == "localization") ? "localization_rev" : "localization")">@Html.DisplayNameFor(model => model.Localisation)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Info)

@@ -19,14 +19,38 @@ namespace RCLAdmin.Core.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
-            var printers = _context
-                .Printers
-                .Where(a => a.Status == true)
-                .Include(a => a.PrinterType)
-                .ToListAsync();
-            return View(await printers);
+            IQueryable<Printer> printers = _context
+                   .Printers
+                   .Where(a => a.Status == true)
+                   .Include(a => a.PrinterType);
+
+            switch (sortOrder)
+            {
+                case "model":
+                    printers = printers.OrderByDescending(a => a.PrinterType.PrinterManufacturer).ThenBy(a => a.PrinterType.Type);
+                    break;
+                case "model_rev":
+                    printers = printers.OrderBy(a => a.PrinterType.PrinterManufacturer).ThenBy(a => a.PrinterType.Type);
+                    break;
+                case "localization":
+                    printers = printers.OrderByDescending(a => a.Localisation);
+                    break;
+                case "localization_rev":
+                    printers = printers.OrderBy(a => a.Localisation);
+                    break;
+                case "ip_rev":
+                    printers = printers.OrderByDescending(a => a.IP);
+                    break;
+                case "ip":
+                default:
+                    printers = printers.OrderBy(a => a.IP);
+                    break;
+            }
+            ViewData["CurrentSortOrder"] = sortOrder;
+
+            return View(await printers.ToListAsync());
         }
 
         public async Task<IActionResult> Details(int? id)
