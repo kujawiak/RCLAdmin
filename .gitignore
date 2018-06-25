@@ -265,3 +265,5 @@ __pycache__/
 /RCLAdmin.old
 /PrinterAPI
 /RCLAdmin.Core/Properties/PublishProfiles/CustomProfile.pubxml
+
+.vscode/
