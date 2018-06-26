@@ -12,6 +12,7 @@ namespace RCLAdmin.Core.Models
         public int PrinterId { get; set; }
 
         [Required]
+        [RegularExpression(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b")]
         [Display(Name = "Adres IP")]
         public string IP { get; set; }
 
