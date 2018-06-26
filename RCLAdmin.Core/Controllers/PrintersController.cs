@@ -29,10 +29,14 @@ namespace RCLAdmin.Core.Controllers
             switch (sortOrder)
             {
                 case "model":
-                    printers = printers.OrderByDescending(a => a.PrinterType.PrinterManufacturer).ThenBy(a => a.PrinterType.Type);
+                    printers = printers.OrderByDescending(a => a.PrinterType.PrinterManufacturer)
+                        .ThenBy(a => a.PrinterType.Type)
+                        .ThenBy(a => Version.Parse(a.IP));
                     break;
                 case "model_rev":
-                    printers = printers.OrderBy(a => a.PrinterType.PrinterManufacturer).ThenBy(a => a.PrinterType.Type);
+                    printers = printers.OrderBy(a => a.PrinterType.PrinterManufacturer)
+                        .ThenBy(a => a.PrinterType.Type)
+                        .ThenBy(a => Version.Parse(a.IP));
                     break;
                 case "localization":
                     printers = printers.OrderByDescending(a => a.Localisation);
@@ -41,11 +45,11 @@ namespace RCLAdmin.Core.Controllers
                     printers = printers.OrderBy(a => a.Localisation);
                     break;
                 case "ip_rev":
-                    printers = printers.OrderByDescending(a => a.IP);
+                    printers = printers.OrderByDescending(a => Version.Parse(a.IP));
                     break;
                 case "ip":
                 default:
-                    printers = printers.OrderBy(a => a.IP);
+                    printers = printers.OrderBy(a => Version.Parse(a.IP));
                     break;
             }
             ViewData["CurrentSortOrder"] = sortOrder;
