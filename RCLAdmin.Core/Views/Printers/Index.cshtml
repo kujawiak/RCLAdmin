@@ -20,6 +20,9 @@
                 <a asp-action="Index" asp-route-sortOrder="@(((string)ViewData["CurrentSortOrder"] == "ip") ? "ip_rev" : "ip")">@Html.DisplayNameFor(model => model.IP)</a>
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.SerialNumber)
+            </th>
+            <th>
                 <a asp-action="Index" asp-route-sortOrder="@(((string)ViewData["CurrentSortOrder"] == "localization") ? "localization_rev" : "localization")">@Html.DisplayNameFor(model => model.Localisation)</a>
             </th>
             <th>
@@ -39,6 +42,9 @@
             </td>
             <td>
                 <a href="http://@item.IP" target="_blank" class="ipcheck">@item.IP</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNumber)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Localisation)

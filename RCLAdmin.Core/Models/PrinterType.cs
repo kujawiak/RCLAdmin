@@ -23,7 +23,8 @@ namespace RCLAdmin.Core.Models
 
         public override string ToString()
         {
-            return string.Format("{0} {1}", PrinterManufacturer, Type);
+            return string.Format("{0} {1}", PrinterManufacturer, Type)
+                .Replace("HewlettPackard", "HP");
         }
     }
 }
