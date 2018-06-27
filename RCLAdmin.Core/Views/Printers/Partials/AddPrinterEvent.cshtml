@@ -28,7 +28,7 @@
             <span asp-validation-for="EventType" class="text-danger"></span>
             @*@Html.ActionLink("Dodaj nowy typ", "NIE_MA")*@
         </div>
-        <div class="form-group">
+        <div class="form-group" id="pafg">
             <label asp-for="PrinterAccessory" class="control-label"></label>
             <select asp-for="PrinterAccessory.PrinterAccessoryId" class="form-control" asp-items="@((List<SelectListItem>)ViewData["PrinterAccessories"])"></select>
             <span asp-validation-for="PrinterAccessory" class="text-danger"></span>
