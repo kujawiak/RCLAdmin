@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RCLAdmin.Core.Data;
@@ -61,32 +60,43 @@ namespace RCLAdmin.Core.Controllers
         public ActionResult CrashNotificationForm(int printerId, int printerEventId)
         {
             var printer = _context.Printers.Include(a => a.PrinterType).SingleOrDefault(a => a.PrinterId == printerId);
+            if (printer == null)
+                return NotFound();
             var eevent = _context.PrinterEvents.Find(printerEventId);
+            if (eevent == null)
+                return NotFound();
             var filename = String.Format("Zgłoszenie awarii RCL - {0} ({1}) {2}.docx",
                 printer.PrinterType.ToString(),
                 printer.SerialNumber,
                 eevent.Date.ToShortDateString());
-            var outputFile = "wwwroot/zgloszenia/" + filename;
-            System.IO.File.Copy("wwwroot/template_0.docx", outputFile, true);
-
-            if (eevent.Comment == null) eevent.Comment = String.Empty;
-
-            var valuesToFill = new Content(
-                new FieldContent("PRINTER", printer.PrinterType.ToString()),
-                new FieldContent("SERIAL_NUMBER", printer.SerialNumber),
-                new FieldContent("COMMENT", eevent.Comment),
-                new FieldContent("DATE", eevent.Date.ToString("yyyy-MM-dd HH:mm"))
-                );
-
-            using (var outputDocument = new TemplateProcessor(outputFile)
-                .SetRemoveContentControls(true))
+            var outputFile = @"wwwroot/zgloszenia/" + filename;
+            try
             {
-                outputDocument.FillContent(valuesToFill);
-                outputDocument.SaveChanges();
-            }
+                System.IO.File.Copy(@"wwwroot/template_0.docx", outputFile, true);
+                if (eevent.Comment == null) eevent.Comment = String.Empty;
+                if (printer.SerialNumber == null) printer.SerialNumber = "brak";
 
-            byte[] fileBytes = System.IO.File.ReadAllBytes(outputFile);
-            return File(fileBytes, "application/octet-stream", filename);
+                var valuesToFill = new Content(
+                    new FieldContent("PRINTER", printer.PrinterType.ToString()),
+                    new FieldContent("SERIAL_NUMBER", printer.SerialNumber),
+                    new FieldContent("COMMENT", eevent.Comment),
+                    new FieldContent("DATE", eevent.Date.ToString("yyyy-MM-dd HH:mm"))
+                    );
+
+                using (var outputDocument = new TemplateProcessor(outputFile)
+                    .SetRemoveContentControls(true))
+                {
+                    outputDocument.FillContent(valuesToFill);
+                    outputDocument.SaveChanges();
+                }
+
+                byte[] fileBytes = System.IO.File.ReadAllBytes(outputFile);
+                return File(fileBytes, "application/vnd.openxmlformats-officedocument.wordprocessingml.document", filename);
+            }
+            catch (Exception ex)
+            {
+                return Content(String.Format("{0}", ex.Message));
+            }           
         }
     }
 }
