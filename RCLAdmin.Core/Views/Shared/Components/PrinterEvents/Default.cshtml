@@ -33,10 +33,24 @@
                 @item.Date.ToShortDateString()
             </td>
             <td>
-                @item.EventType
+                @if (item.EventType == PrinterEventType.WymianaTonera)
+                {
+                <span>Wymiana tonera</span>
+                }
+                @if (item.EventType == PrinterEventType.ZgloszenieAwarii)
+                {
+                <span>Zgłoszenie awarii</span>
+                }
             </td>
             <td>
-                @item.PrinterAccessory
+                @if (item.EventType == PrinterEventType.WymianaTonera)
+                {
+                    @item.PrinterAccessory
+                }
+                @if (item.EventType == PrinterEventType.ZgloszenieAwarii)
+                {
+                    <a asp-controller="Events" asp-route-printerId="@item.Printer.PrinterId" asp-route-printerEventId="@item.PrinterEventId" asp-action="CrashNotificationForm">Formularz zgłoszenia</a>
+                }
             </td>
             <td>
                 @item.Counter

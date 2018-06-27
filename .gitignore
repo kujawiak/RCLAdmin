@@ -267,3 +267,4 @@ __pycache__/
 /RCLAdmin.Core/Properties/PublishProfiles/CustomProfile.pubxml
 
 .vscode/
+*.docx
