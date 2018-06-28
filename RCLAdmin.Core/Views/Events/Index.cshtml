@@ -19,6 +19,9 @@
                 @Html.DisplayNameFor(model => model.EventType)
             </th>
             <th>
+                Drukarka (IP)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Counter)
             </th>
             <th>
@@ -39,6 +42,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.EventType)
             </td>
+            <th>
+                <a asp-controller="Printers" asp-action="Details" asp-route-id="@item.Printer.PrinterId">@item.Printer.PrinterType.ToString()</a>
+                (<a href="http://@item.Printer.IP" target="_blank">@item.Printer.IP</a>)
+            </th>
             <td>
                 @Html.DisplayFor(modelItem => item.Counter)
             </td>
@@ -49,10 +56,10 @@
                 @Html.DisplayFor(modelItem => item.Comment)
             </td>
             @*<td>
-                <a asp-action="Edit" asp-route-id="@item.PrinterEventId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PrinterEventId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PrinterEventId">Delete</a>
-            </td>*@
+            <a asp-action="Edit" asp-route-id="@item.PrinterEventId">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.PrinterEventId">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.PrinterEventId">Delete</a>
+        </td>*@
         </tr>
 }
     </tbody>

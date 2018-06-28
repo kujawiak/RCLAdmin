@@ -17,7 +17,7 @@ $("#EventType").change(function (v) {
     var ev = v.target.value;
     var pafg = $("#pafg");
     console.log(v.target.value);
-    if (ev == 100) {
+    if (ev === 100) {
         pafg.hide();
     } else {
         pafg.show();

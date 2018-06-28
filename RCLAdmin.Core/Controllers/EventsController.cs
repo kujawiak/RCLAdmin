@@ -22,6 +22,8 @@ namespace RCLAdmin.Core.Controllers
         public async Task<IActionResult> Index()
         {
             var events = _context.PrinterEvents
+                .Include(a => a.Printer)
+                .ThenInclude(a => a.PrinterType)
                 .OrderByDescending(a => a.Date)
                 .ToListAsync();
             return View(await events);
