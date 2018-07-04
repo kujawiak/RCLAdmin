@@ -13,7 +13,7 @@
             @Html.DisplayNameFor(model => model.IP)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.IP)
+            <a href="http://@Model.IP" target="_blank">@Model.IP</a>
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Localisation)
