@@ -23,10 +23,10 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-     var classType = String.Empty;
-        if (item.Availability < 2) { classType = "bg-warning"; }
-        if (item.Availability < 1) { classType = "bg-danger"; }
-    
+    var classType = String.Empty;
+    if (item.Availability < 2) { classType = "bg-warning"; }
+    if (item.Availability < 1) { classType = "bg-danger"; }
+
         <tr class="@classType">
             <td>
                 @item.ToString()
@@ -42,7 +42,8 @@
                 }
             </td>
             <td>
-                <a asp-action="AssignPrinter" asp-route-id="@item.PrinterAccessoryId" class="linkth glyphicon glyphicon-print"></a>
+                @*<a asp-action="AssignPrinter" asp-route-id="@item.PrinterAccessoryId" class="linkth glyphicon glyphicon-print"></a>*@
+                <a asp-action="Edit" asp-route-id="@item.PrinterAccessoryId" class="linkth glyphicon glyphicon-stats"></a>
             </td>
         </tr>
 }
