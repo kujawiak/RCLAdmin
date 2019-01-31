@@ -25,8 +25,12 @@ namespace RCLAdmin.Core.Controllers
                 .Include(a => a.PrinterAccessoryType)
                 .ThenInclude(a => a.PrinterType)
                 .ToListAsync();
-            var x = await accessories;
-            return View(x);
+
+            var printerTypes = await _context.PrinterTypes.ToListAsync();
+            var viewData = await accessories;
+
+            ViewBag.PrinterTypes = printerTypes;
+            return View(viewData);
         }
 
         public async Task<IActionResult> Edit(int? id)

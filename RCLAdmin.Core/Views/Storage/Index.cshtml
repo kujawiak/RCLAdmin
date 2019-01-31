@@ -10,42 +10,67 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Typ drukarki
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Availability)
+                Typ toneru
             </th>
             <th>
-                Sparowane drukarki
+                Dostępność
             </th>
             @*<th></th>*@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-    var classType = String.Empty;
-    if (item.Availability < 2) { classType = "bg-warning"; }
-    if (item.Availability < 1) { classType = "bg-danger"; }
+        @{
+            List<PrinterType> pt = ViewBag.PrinterTypes;
+        }
+        @foreach (string ptype in Enum.GetNames(typeof(PrinterManufacturer)))
+        {
+            if (!pt.Any(a => a.PrinterManufacturer.ToString() == ptype))
+            {
+                continue;
+            }
+            <tr class="h3 bg-primary"><td colspan="4">@ptype</td></tr>
 
-        <tr class="@classType">
-            <td>
-                @item.ToString()
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Availability)
-            </td>
-            <td>
-                @foreach (var p in item.PrinterAccessoryType)
-                {
-                    @p.PrinterType.ToString();
-                    <br />
-                }
-            </td>
-            <td>
-                @*<a asp-action="AssignPrinter" asp-route-id="@item.PrinterAccessoryId" class="linkth glyphicon glyphicon-print"></a>*@
-                <a asp-action="Edit" asp-route-id="@item.PrinterAccessoryId" class="linkth glyphicon glyphicon-stats"></a>
-            </td>
-        </tr>
-}
+                var pritnersForType = Model.Where(a => a.PrinterAccessoryType.Any(b => b.PrinterType.PrinterManufacturer.ToString() == ptype));
+
+                @foreach (var item in pritnersForType)
+            {
+                    var classType = String.Empty;
+                    if (item.Availability < 2) { classType = "bg-warning"; }
+                    if (item.Availability < 1) { classType = "bg-danger"; }
+
+                <tr class="@classType">
+                    <td>
+                        @foreach (var p in item.PrinterAccessoryType)
+                        {
+                            @p.PrinterType.ToString();
+                            <br />
+                        }
+                    </td>
+                    <td>
+                        @{
+                            string bgc = "silver";
+                            if (item.ToString().ToLower().Contains("black")) { bgc = "black"; }
+                            if (item.ToString().ToLower().Contains("cyan")) { bgc = "#00FFFF"; }
+                            if (item.ToString().ToLower().Contains("magenta")) { bgc = "#FF00FF"; }
+                            if (item.ToString().ToLower().Contains("yellow")) { bgc = "#FFFF00"; }
+                        }
+                        <div style="height: 18px; width: 18px; background-color: @bgc; display: inline-block;">&nbsp;</div>
+                        @item.ToString()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Availability)
+                    </td>
+                    <td>
+                        @*<a asp-action="AssignPrinter" asp-route-id="@item.PrinterAccessoryId" class="linkth glyphicon glyphicon-print"></a>*@
+                        <a asp-action="Edit" asp-route-id="@item.PrinterAccessoryId" class="linkth glyphicon glyphicon-stats"></a>
+                    </td>
+                </tr>
+            }
+        }
+
+
     </tbody>
 </table>
