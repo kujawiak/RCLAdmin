@@ -7,46 +7,57 @@
 <h4>@Model.PrinterType.ToString()</h4>
 <hr />
 
-<div>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.IP)
-        </dt>
-        <dd>
-            <a href="http://@Model.IP" target="_blank">@Model.IP</a>
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Localisation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Localisation)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SerialNumber)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SerialNumber)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Info)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Info)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Person)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Person)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-    </dl>
+<div class="row">
+    <div class="col-sm-6">
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.IP)
+                </dt>
+                <dd>
+                    <a href="http://@Model.IP" target="_blank">@Model.IP</a>
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Localisation)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Localisation)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SerialNumber)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.SerialNumber)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Info)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Info)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Person)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Person)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Status)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Status)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="btn btn-info" data-toggle="collapse" href="#accessoryList" role="button" aria-expanded="false" aria-controls="accessoryList">Pokaż/ukryj materiały dla @Model.PrinterType.ToString()</div>
+        <div id="accessoryList" class="collapse">
+            @await Component.InvokeAsync("PrinterAccessories", new { printerTypeId = Model.PrinterType.PrinterTypeId })
+        </div>
+    </div>
 </div>
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model.PrinterId">Edytuj</a> |
     <a asp-action="Index">Powrót do rejestru</a>

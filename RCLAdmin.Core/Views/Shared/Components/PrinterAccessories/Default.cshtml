@@ -1,0 +1,35 @@
+﻿@using RCLAdmin.Core.Models
+@using RCLAdmin.Core.ViewComponents
+@model IEnumerable<PrinterAccessory>
+
+<table class="table">
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var classType = String.Empty;
+            if (item.Availability < 2) { classType = "bg-warning"; }
+            if (item.Availability < 1) { classType = "bg-danger"; }
+
+            <tr class="@classType">
+                <td>
+                    @{
+                        string bgc = "silver";
+                        if (item.ToString().ToLower().Contains("black")) { bgc = "black"; }
+                        if (item.ToString().ToLower().Contains("cyan")) { bgc = "#00FFFF"; }
+                        if (item.ToString().ToLower().Contains("magenta")) { bgc = "#FF00FF"; }
+                        if (item.ToString().ToLower().Contains("yellow")) { bgc = "#FFFF00"; }
+                    }
+                    <div style="height: 18px; width: 18px; background-color: @bgc; display: inline-block;">&nbsp;</div>
+                    @item.ToString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Availability)
+                </td>
+                <td>
+                    @*<a asp-action="AssignPrinter" asp-route-id="@item.PrinterAccessoryId" class="linkth glyphicon glyphicon-print"></a>*@
+                    <a asp-controller="Storage" asp-action="Edit" asp-route-id="@item.PrinterAccessoryId" class="linkth glyphicon glyphicon-stats"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

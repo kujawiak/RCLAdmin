@@ -16,4 +16,10 @@
     <Folder Include="wwwroot\zgloszenia\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Shared\Components\PrinterAccessories\Default.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
 </Project>
