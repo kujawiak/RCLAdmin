@@ -24,6 +24,7 @@ namespace RCLAdmin.Core.Controllers
                 .PrinterAccessories
                 .Include(a => a.PrinterAccessoryType)
                 .ThenInclude(a => a.PrinterType)
+                .Where(a => !a.Name.ToLower().Contains("drum"))
                 .ToListAsync();
 
             var printerTypes = await _context.PrinterTypes.ToListAsync();
